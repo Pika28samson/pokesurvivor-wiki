@@ -21,3 +21,15 @@
  .mobile-stage-table thead th{background:#26384a}
  .move-simulation>details{grid-column:1/-1}
 }
+
+@media(max-width:650px){
+.mobile-comparison-info{display:flex;align-items:center;flex-wrap:wrap;gap:4px 6px;margin:4px 0 8px}
+.sim-comparison .mobile-comparison-info p{margin:0}
+.mobile-comparison-info .badge{font-size:10px;padding:2px 5px;margin:0}
+.hero:has(.pokemon-portraits){gap:12px;flex-wrap:wrap}
+.hero .pokemon-portraits{gap:4px}
+.hero .pokemon-portraits .sprite-area{width:64px;min-width:64px;height:88px}
+.pokemon-portraits .sprite-frame{transform:scale(.64)}
+.hero:has(.pokemon-portraits)>div:last-child{flex-basis:140px}
+.ability-entry>summary>.sprite-area{margin-right:0}
+}

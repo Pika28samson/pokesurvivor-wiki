@@ -79,7 +79,8 @@
    if(table.classList.contains('mobile-stage-table'))continue;if(!table.classList.contains('mobile-table'))mark(table,'mobile-table');const headers=[...(table.tHead?.rows[0]?.cells||table.rows[0]?.cells||[])].map(c=>c.textContent);
    for(const row of table.tBodies[0]?.rows||[])for(const [i,cell] of [...row.cells].entries())if(cell.tagName==='TD'&&cell.getAttribute('data-mobile-label')!==headers[i])attr(cell,'data-mobile-label',headers[i]||'Value');
   }}
-  function refresh(){if(stopped)return;abilityHolders();previews();tables();}
+  function comparisonHeadings(){if(page!=='simulation.html')return;for(const card of main.querySelectorAll('.sim-comparison')){if(card.querySelector('.mobile-comparison-info'))continue;const info=card.querySelector(':scope > p'),badges=[...card.querySelectorAll(':scope > .badge')];if(info&&badges.length){const row=own(el('div','mobile-comparison-info'));info.before(row);move(info,row);for(const badge of badges)move(badge,row);}}}
+  function refresh(){if(stopped)return;comparisonHeadings();abilityHolders();previews();tables();}
   const revealHash=()=>{if(!location.hash)return;let target;try{target=document.getElementById(decodeURIComponent(location.hash.slice(1)));}catch{return;}if(!target)return;for(let n=target;n&&n!==main;n=n.parentElement)if(n.tagName==='DETAILS')n.open=true;const article=target.closest('.mechanic');if(article)article.querySelector(':scope > details')?.setAttribute('open','');requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));};
   on(window,'hashchange',revealHash);revealHash();
   refresh();observer=new MutationObserver(()=>{if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;refresh();});});observer.observe(main,{childList:true,subtree:true,attributes:true,attributeFilter:['src','data-mobile-src']});

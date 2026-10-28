@@ -108,13 +108,13 @@ window.Wiki = (() => {
     return out.filter(Boolean);
   }
   function badge(type) { const el=document.createElement('span'); el.className='badge';el.textContent=type;el.style.setProperty('--type-color',colours[type]);return el; }
-  function sprite(mon) {
+  function sprite(mon,options={}) {
     const area=document.createElement('div');area.className='sprite-area';
-    const a=G.SPRITE_META[mon.dex]?.a, anim=a?.Idle?'Idle':a?.Walk?'Walk':null;
-    if(!anim){area.textContent='Sprite unavailable';return area;}
-    const m=a[anim],s=Math.min(2,100/m.h,170/m.w),frame=document.createElement('span'),img=document.createElement('img');
+    const meta=G.SPRITE_META[mon.dex],shiny=!!options.shiny,a=meta?.a,available=name=>a?.[name]&&!(shiny&&meta.sm?.includes(name)),anim=available('Idle')?'Idle':available('Walk')?'Walk':null;
+    if(!anim||(shiny&&!meta.sh)){area.textContent=shiny?'Shiny unavailable':'Sprite unavailable';return area;}
+    const m=(shiny&&meta.sa?.[anim])||a[anim],s=Math.min(2,(options.height||100)/m.h,(options.width||170)/m.w),frame=document.createElement('span'),img=document.createElement('img');
     frame.className='sprite-frame';frame.style.width=`${m.w*s}px`;frame.style.height=`${m.h*s}px`;
-    img.src=`../assets/pokemon/${mon.dex}/${anim}.png`;img.alt=`${mon.name} sprite`;img.loading='lazy';img.style.width=`${m.w*m.n*s}px`;img.style.height=`${m.h*m.r*s}px`;
+    img.src=`../assets/pokemon/${mon.dex}/${shiny?'s/':''}${anim}.png`;img.alt=`${mon.name}${shiny?' shiny':''} sprite`;img.loading='lazy';img.style.width=`${m.w*m.n*s}px`;img.style.height=`${m.h*m.r*s}px`;
     img.onerror=()=>{area.textContent='Sprite unavailable';};frame.append(img);area.append(frame);return area;
   }
   let bestMoveUsers;
