@@ -3,13 +3,25 @@
 window.ComboPreview = (() => {
   const noop=()=>{};
   const fixed=(object,key,value)=>Object.defineProperty(object,key,{get:()=>value,set:noop,enumerable:true});
+  // Keep full runtime effects separate from the ranking estimator's exclusions.
+  function liveProfile(mon,conditions){
+    const abilityId=conditions.abilityId??ComboAbilities.ids(mon)[0]??'none';
+    if(abilityId!=='none'&&!ComboAbilities.ids(mon).includes(abilityId))throw Error('Choose an ability available to this Pokémon.');
+    const profile=ComboAbilities.prepare(mon,{...conditions,abilityId:'none'});
+    let fx=abilityId==='none'?{}:G.AbilityFX.of(abilityId,mon);
+    if(fx.summon){fx={...fx};delete fx.summon;}
+    if(fx.start)fx.start(profile.player);
+    profile.player.hp=profile.player.maxHp*Math.min(100,Math.max(1,Number(conditions.hpPercent??100)))/100;
+    Object.assign(profile,{abilityId,fx,summonedWeather:false,cdMul:fx.cdMul||1,statusCd:fx.statusCd||1});
+    return profile;
+  }
   function create(dex,ids,{cdMul=1,statusCd=1,layers=1,perLayer=8,arc=360,distance=100,mode='stationary',enemyHp=1000,spawnRate=4,conditions={},singleMove=false,neutralStats=false,maxEnemies,contactPenalty=false}={}) {
     const swarm=mode==='swarm';
     enemyHp=Math.min(1000000,Math.max(1,Number(enemyHp)||1000));spawnRate=Math.min(100,Math.max(.1,Number(spawnRate)||4));
     let mon=G.DEX_BY[dex];
     if(!mon||ids.length<1||ids.length>4||(singleMove&&ids.length!==1)||new Set(ids).size!==ids.length||ids.some(id=>!G.Moves.BY_ID[id]))throw Error('Invalid preview combination.');
     if(neutralStats)mon={...mon,pa:1,sa:1,atk:1,types:[]};
-    const profile=window.ComboAbilities?ComboAbilities.prepare(mon,conditions):null;
+    const profile=window.ComboAbilities?(singleMove?ComboAbilities.prepare(mon,{...conditions,abilityId:'none',weather:'none'}):liveProfile(mon,conditions)):null;
     if(profile)mon=profile.player.mon;
     G.FX.clear();G.Projectiles.clear();G.Combat.clearFields();
     const moves=ids.map(id=>{const m=G.Moves.instance(id,G.Moves.BY_ID[id].maxLvl);G.Moves.evolve(m);m.t=0;return m;});
@@ -20,6 +32,13 @@ window.ComboPreview = (() => {
       atkFor(m){const b=this.buffs[m.cat==='special'?'satk':'patk'];const a=this.buffs.atk;return (profile?profile.player.baseAtk/mon.atk:1)*(m.cat==='special'?mon.sa:mon.pa)*(1+(a?.n||0)*(a?.amount||0))*(1+(b?.n||0)*(b?.amount||0))*(mon.types.length===1&&mon.types[0]===m.type?1.2:1);},
       cast(m){if(anim.busy()&&anim.progress()<.65)return;anim.play(({melee:'Attack',beam:'Shoot',projectile:'Shoot',homing:'Shoot',bounce:'Shoot',chain:'Shoot',boomerang:'Shoot',cone:'Shoot',buff:'Charge',orbit:'Charge'})[m.kind]||'Attack');}
     };
+    const abilityState=profile?.player;
+    if(abilityState){
+      Object.assign(abilityState,{level:1,dead:false,r:player.r,bodyH:player.bodyH,x:0,y:65,addBuff:player.addBuff.bind(player)});
+      player.level=abilityState.level;
+      for(const hook of ['hit','contact'])if(profile.fx[hook])player.abil[hook]=(_pl,...args)=>profile.fx[hook](abilityState,...args);
+      player.hurt=(_amount,type,pure,cat)=>{if(!pure&&profile.fx.hurt)profile.fx.hurt(abilityState,type,cat==='physical'?'p':cat==='special'?'s':'');};
+    }
     fixed(player,'x',0);fixed(player,'y',65);fixed(player,'hp',Infinity);fixed(player,'maxHp',Infinity);
     const camera=Object.assign({},G.Camera);camera.zoom=1;camera.resize(480,340);camera.x=player.x;camera.y=player.y;camera.kick=noop;
     const spawnRadius=camera.outerRadius();
@@ -31,13 +50,13 @@ window.ComboPreview = (() => {
     const enemies=[];let nextId=1,kills=0,spawnTimer=0;
     const population=maxEnemies==null?layers*perLayer:Math.min(200,Math.max(1,Math.round(Number(maxEnemies)||20)));
     function makeEnemy(x,y){
-      const enemy={id:nextId++,mon:{},types:['normal'],r:18,bodyH:40,dead:false,touchCd:Infinity,kx:0,ky:0,flash:0,burn:0,poison:0,burnT:0,poisonT:0,burnTick:0,poisonTick:0,slow:0,slowT:0,stunT:0,speed:45+Math.random()*20,
+      const enemy={id:nextId++,mon:{},types:['normal'],r:18,bodyH:40,dead:false,touchCd:singleMove?Infinity:0,dmg:10,atkType:'normal',cat:'physical',kx:0,ky:0,flash:0,burn:0,poison:0,burnT:0,poisonT:0,burnTick:0,poisonTick:0,slow:0,slowT:0,stunT:0,speed:45+Math.random()*20,
         cy(){return this.y;},hurt(damage,color='#aab6c8',dx=0,dy=0,knock=0,eff=null){
           if(this.dead||!Number.isFinite(damage)||damage<=0)return;
           this.flash=.09;const dealt=swarm?Math.min(this.hp,Math.max(1,Math.round(damage))):damage;record(dealt);
           G.FX.dmgText(this.x,this.y-this.bodyH-4,Math.round(dealt),eff==='crit'?'#ff9a3c':color,true);
           if(swarm){this.hp-=dealt;const len=Math.hypot(dx,dy)||1;this.kx+=dx/len*knock;this.ky+=dy/len*knock;
-            if(this.hp<=0){this.dead=true;kills++;G.FX.burst(this.x,this.y-16,'#8edbc5',6,65);}}
+            if(this.hp<=0){this.dead=true;kills++;if(profile?.fx.kill)profile.fx.kill(abilityState,this);G.FX.burst(this.x,this.y-16,'#8edbc5',6,65);}}
         },strike:noop,
         applyBurn(n=1){this.burn=Math.min(8,this.burn+n);this.burnT=3;},applyPoison(n=1){this.poison=Math.min(8,this.poison+n);this.poisonT=4;},
         applySlow(n=.3,dur=2){this.slow=Math.min(.8,n);this.slowT=dur;},applyStun(dur=1){this.stunT=Math.max(this.stunT,dur);}};
@@ -53,7 +72,7 @@ window.ComboPreview = (() => {
     }
     const enemy=enemies.slice(0,perLayer).reduce((best,e)=>e.y<best.y?e:best,enemies[0]);player.target=enemy;
     player.aim=Math.atan2(enemy.y-player.y,enemy.x-player.x);anim.dir=G.Sprites.dirFromAngle(player.aim);
-    G.Coop={active:false};G.Audio={sfx:noop};G.Camera=swarm?camera:{...camera,sees:(x,y,margin=0)=>Math.abs(x)<420+margin&&Math.abs(y)<360+margin,kick:noop};
+    G.Coop={active:false};G.Audio={sfx:noop};G.Pickups={drop:noop};G.Camera=swarm?camera:{...camera,sees:(x,y,margin=0)=>Math.abs(x)<420+margin&&Math.abs(y)<360+margin,kick:noop};
     G.World={isWall:()=>false,isFree:()=>true,collide:noop,propsInCircle:()=>[],damageProp:noop,projectileBlock:()=>null};
     G.EnemyMgr={all:()=>enemies.filter(e=>!e.dead),queryCircle:(x,y,r)=>enemies.filter(e=>!e.dead&&G.U.dist2(x,y,e.x,e.y)<=(r+e.r)**2)};
     // Neutral dummy targets; damage is measured from actual resolved hits, never used to rank combinations.
@@ -66,6 +85,7 @@ window.ComboPreview = (() => {
     }
     function step(dt){
       time+=dt;anim.update(dt);
+      if(abilityState){if(profile.fx.tick)profile.fx.tick(abilityState,dt);if(abilityState.regenFlat>0)abilityState.hp=Math.min(abilityState.maxHp,abilityState.hp+abilityState.regenFlat*dt);}
       if(swarm){
         for(let i=enemies.length-1;i>=0;i--)if(enemies[i].dead)enemies.splice(i,1);
         spawnTimer-=dt;while(spawnTimer<=1e-9){if(enemies.length<population)spawn();spawnTimer+=1/spawnRate;}
@@ -73,7 +93,7 @@ window.ComboPreview = (() => {
       const liveEnemies=enemies.filter(e=>!e.dead).length;
       enemyTimeLog.push([time-dt,time,liveEnemies]);enemySecondsTotal+=dt*liveEnemies;
       while(enemyTimeLog.length&&enemyTimeLog[0][1]<=time-15)enemyTimeLog.shift();
-      for(const e of enemies){if(e.dead)continue;
+      for(const e of enemies){if(e.dead)continue;e.touchCd=Math.max(0,e.touchCd-dt);
         if(swarm){e.slowT=Math.max(0,e.slowT-dt);e.stunT=Math.max(0,e.stunT-dt);if(!e.slowT)e.slow=0;
           const dx=player.x-e.x,dy=player.y-e.y,d=Math.hypot(dx,dy)||1,stop=player.r+e.r;
           const travel=e.stunT>0?0:Math.min(Math.max(0,d-stop),e.speed*(1-e.slow)*dt);
@@ -108,7 +128,7 @@ window.ComboPreview = (() => {
     function dps(){return damageLog.reduce((sum,hit)=>sum+hit[1],0)/Math.max(1/60,Math.min(15,time));}
     function score(){return dps()-contactLog.reduce((sum,hit)=>sum+hit[1],0)/Math.max(1/60,Math.min(15,time));}
     function perEnemyDps(){const start=Math.max(0,time-15),enemySeconds=enemyTimeLog.reduce((sum,[from,to,count])=>sum+Math.max(0,to-Math.max(start,from))*count,0);return enemySeconds>0?damageLog.reduce((sum,hit)=>sum+hit[1],0)/enemySeconds:0;}
-    return {player,enemy,enemies,moves,step,draw,dps,perEnemyDps,score,get enemySeconds(){return enemySecondsTotal;},get contactPenalty(){return contactPenaltyTotal;},get contacts(){return contacts;},get netDamage(){return totalDamage-contactPenaltyTotal;},get displayedPerEnemyDps(){return displayedPerEnemyDps;},get kills(){return kills;},get displayedDps(){return displayedDps;},get totalDamage(){return totalDamage;},get elapsed(){return time;}};
+    return {player,abilityState,enemy,enemies,moves,step,draw,dps,perEnemyDps,score,get enemySeconds(){return enemySecondsTotal;},get contactPenalty(){return contactPenaltyTotal;},get contacts(){return contacts;},get netDamage(){return totalDamage-contactPenaltyTotal;},get displayedPerEnemyDps(){return displayedPerEnemyDps;},get kills(){return kills;},get displayedDps(){return displayedDps;},get totalDamage(){return totalDamage;},get elapsed(){return time;}};
   }
   return {create};
 })();

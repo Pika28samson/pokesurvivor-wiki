@@ -1,0 +1,22 @@
+{
+  "description": "Game sources used to verify gacha, ability slot probabilities and item/orb references. Deployment uses the upstream commit pinned in hosting/pages.yml.",
+  "sources": {
+    "js/core/util.js": "cbe280d866fcbbe7a603d5c60c708eecd556f17b7ec0f1dd58c1d4548ab9ccc4",
+    "js/data/pokedex.js": "43ec37ef3ac48452f9a72c51851a188e2375ec93cde9394b335612ad1e107369",
+    "js/data/sprites-meta.js": "c719091bb7ce284bce5b4fdc93eeb0b93a096f1302e8e3466142de05323b311a",
+    "js/data/moves.js": "9e0f1060ab8c423005ae1a387c54ba0d718813c4cf23bd551d1135dc125b0666",
+    "js/data/abilities.js": "42e79a2ec88780fb686232e175330e5e3874ac868164d758c10944b396e5fd82",
+    "js/data/ability-fx.js": "a58bbb526ec3c562af20cb32928338b916246f29e914137374a0a5dd1ec240e9",
+    "js/data/items.js": "757b69dc229cc834a3cb339a71b57ef980e284259f885176fdfe3efd1fc9df94",
+    "js/ui/icons.js": "44dc540b22897e0e518b1f9607725545e2bc7e394de7be88910fad69790eb38e",
+    "js/systems/gacha.js": "d9421de07e86b2e3e852f5245fc3be8dfdd50cf49ad2904a73e2c2721ea848c6",
+    "js/systems/mons.js": "4732470f436b8c32cdc3e04ce13132c23a89a1cc43ff89ef366bc5d8dacc524e",
+    "js/systems/orbs.js": "7ac8b9fba41f7a6183013b820519af3dec8698ab13858b6f0b7833dd4bfdd7fe",
+    "js/entities/player.js": "fff9f133389d4f5887732e52ae50bb7ebe68b44ead08ba879cbefe403d06c660",
+    "js/entities/pickup.js": "fa650ccd1a613875af367a2a5ab9a1147131e23926ed8cc429964ab13662b835",
+    "js/entities/enemy.js": "b808e715fbb2d917c09ac85f6644aacd89fd6479b2ca05e5c8dd8131ab3f79f1",
+    "js/systems/combat.js": "98e59fb480f3a922d7bc953c42dce36b006b703d3c3eb124e3bf8f49305088a2",
+    "js/world/world.js": "48919fd3ac2e21c2bc8fe49eeea8365c47cdba3d40af852099f39bd199d06ed4",
+    "js/systems/judgment.js": "fd27bf01fe30fbbe44dc327e0e04a4faeb78cf58cf31e51972512638f1777c8f"
+  }
+}

@@ -9,9 +9,9 @@
  function persist(){const error=B.save(storage,state);message(error);return !error;}
  function error(text){$('sim-form-error').textContent=text;}
  function pokemonOptions(query=''){
-  const previous=Number($('sim-pokemon').value)||25,q=query.toLowerCase().trim();const mons=G.DEX.filter(m=>!q||`${m.name} ${m.dex}`.toLowerCase().includes(q));$('sim-pokemon').replaceChildren();
+  const previous=Number($('sim-pokemon').value)||25,q=query.toLowerCase().trim();const rank=m=>m.name.toLowerCase()===q?0:m.name.toLowerCase().startsWith(q)?1:2;const mons=G.DEX.filter(m=>!q||`${m.name} ${m.dex}`.toLowerCase().includes(q)).sort((a,b)=>q?rank(a)-rank(b)||a.dex-b.dex:0);$('sim-pokemon').replaceChildren();
   for(const m of mons)$('sim-pokemon').add(new Option(`#${String(m.dex).padStart(4,'0')} ${m.name}`,m.dex));
-  $('sim-pokemon').value=String(mons.some(m=>m.dex===previous)?previous:mons[0]?.dex||'');
+  $('sim-pokemon').value=String(!q&&mons.some(m=>m.dex===previous)?previous:mons[0]?.dex||'');
   return Number($('sim-pokemon').value)!==previous;
  }
  function updatePokemon(build){

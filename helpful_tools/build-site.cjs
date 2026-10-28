@@ -5,6 +5,8 @@ if(fs.existsSync(out))throw Error('_site already exists; use a fresh build direc
 fs.mkdirSync(out);
 for(const dir of ['js','assets'])fs.cpSync(path.join(upstream,dir),path.join(out,dir),{recursive:true});
 fs.cpSync(__dirname,path.join(out,'helpful_tools'),{recursive:true,filter:s=>!['hosting','swarm_simulator'].includes(path.basename(s))});
+require('./navigation.cjs').apply(path.join(out,'helpful_tools'));
+require('./build-reference-data.cjs').build(upstream,path.join(out,'helpful_tools'));
 fs.mkdirSync(path.join(out,'helpful_tools/swarm_simulator/results'),{recursive:true});
 for(const file of ['move-dps.csv','move-dps.json'])fs.copyFileSync(path.join(__dirname,'swarm_simulator/results',file),path.join(out,'helpful_tools/swarm_simulator/results',file));
 for(const file of ['LICENSE','LICENSE-NONCOMMERCIAL.md','CREDITS.md'])fs.copyFileSync(path.join(upstream,file),path.join(out,file));

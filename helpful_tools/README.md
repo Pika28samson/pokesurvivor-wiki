@@ -208,3 +208,33 @@ The service worker uses network-first caching for visited resources, with a clea
 `abilities.html` lists the complete ability catalogue and its current Pokémon holders. Descriptions and move matches follow this game’s `ability-fx.js`, not main-series mechanics. Named move lists span all move stages and do not imply holder learnability. Technician uses original base hit damage <=12; Skill Link uses current stage count/bounce. Custom effects and the additional primary-type passive are listed separately.
 
 Check the feature with `node --test helpful_tools/abilities.test.cjs`. Build to a fresh optional output directory with `node helpful_tools/build-site.cjs . <output-directory>`.
+
+## Shared search, gacha and items
+
+`navigation.cjs` owns the shared Reference / Tools / Mechanics navigation and global search header. Run `node helpful_tools/navigation.cjs` after changing it to refresh local HTML; deployment applies it automatically. Search loads its index on demand, supports accented or plain names and dex numbers, and links directly to Pokémon, moves, abilities, mechanic sections and items. The full search page adds category filters. Press `/` to focus search or Escape to close suggestions.
+
+`build-reference-data.cjs` generates `search-index.json` and `reference-provenance.json` from the actual game sources. Run `node helpful_tools/build-reference-data.cjs` for local development. Deployment regenerates both against its pinned upstream checkout, including SHA-256 source fingerprints.
+
+`gacha-model.js` tracks probability mass over pity counters and the current ten-pull's 4★+ flag, using `G.Gacha` rates and pools directly. It includes the 70th-pull pity, tenth-result guarantee, hundred-pull grouping, missing-rarity fallback and 1% / 2% shiny rates. It computes at-least-one probabilities and complete-ten-pull thresholds for 50%, 90% and 99%, up to 20,000 pulls. Shiny duplicate redirection and unlocking the Charm mid-budget depend on unimported collection state and are explicitly excluded; a normal target accepts either form. No save or account is accessed.
+
+`items.html` / `items.js` cover all 11 held items and six Mystery Dungeon orbs, searchable by name and effect and filterable by kind or effect category. Drop notes include chest XP-drop side effects. Runtime sources are linked on each entry.
+
+Ability holder lists show all three slots and initial probabilities before capsules. Hidden is 5% where present; normal slots share the remainder, or a sole normal slot receives it all. The combined filters support custom effects, any type passive, passive-only effects, normal slots and hidden slots.
+
+Validation: `node --test helpful_tools/reference-features.test.cjs helpful_tools/abilities.test.cjs`. This includes an independent ten-pull formula, pity boundaries, all banner pools, a 12,000-run seeded comparison with actual game pulls, slot probabilities, search coverage and item/orb completeness. Shared search assets are included in service-worker cache v2.
+
+### Local search and target lookup
+
+Search now lazy-loads `search-index.js` (generated alongside the JSON index), so it works from `file://` previews without JSON fetch permissions. Its URL resolves relative to the search script and failed loads can be retried. Service-worker cache v3 includes the script index.
+
+The gacha target lookup searches names or exact dex numbers across every banner, including zero-padded numbers and `#` prefixes. Selecting a suggestion updates the banner and target. The pity counter remains user-entered because each banner has its own counter; the lookup reminds users to check it after switching.
+
+Held-item and orb headings include the game's own pixel-art sprites even while collapsed. The reference generator exports all 17 SVGs directly from `js/ui/icons.js` into `item-sprites/`, using `orb:<id>` palettes for orbs. Tests compare every generated sprite to its source definition.
+
+### Live ability effects and compact pages
+
+The requested introductory and repeated explanatory paragraphs have been removed from Pokémon details, abilities, items, gacha and simulation pages. Saved builds is an initially open native disclosure (`sim-saved-section`); its import/export, editing and comparison controls remain available when expanded.
+
+Live Pokémon and saved-build previews now opt into full game ability profiles, including hit/status flags, contact reactions, kill hooks and timed hooks. They use a finite, isolated ability-condition state while the training actor remains invulnerable and stationary. Contact effects use the game's per-enemy contact cooldown; ability damage uses a baseline player level of 1. Loot hooks are harmless no-ops in training. None excludes all ability effects.
+
+Automatic weather summoning is suppressed in live previews, including Drought, Drizzle, Sand Stream, Snow Warning and Orichalcum Pulse. Manually selected weather still applies. Single-move previews force ability and weather to none, so move pages remain ability-free. Ranking and combination-estimate policies are unchanged; their excluded effects should not be confused with the live preview's runtime effects.
