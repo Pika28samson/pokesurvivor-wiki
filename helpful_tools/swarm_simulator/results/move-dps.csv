@@ -1,0 +1,104 @@
+move_id,move_name,type,category,family,level,evolved,trials,total_damage,raw_damage,contact_penalty,contact_removals,simulated_seconds,damage_score,raw_dps,contact_penalty_dps,average_dps_per_enemy,average_damage_score_per_enemy,average_living_enemies,enemy_seconds,kills
+rock-slide,Rock Slide,rock,physical,meteor,5,true,3,189904,189904,0,0,360.00,527.51,527.51,0,21.39,21.39,24.66,8877.17,1898
+meteor-mash,Meteor Mash,steel,physical,meteor,5,true,3,180616,180944,328,8,360.00,501.71,502.62,0.91,20.37,20.34,24.67,8880.88,1800
+ember,Ember,fire,special,projectile,5,true,3,178775,178775,0,0,360.00,496.60,496.60,0,20.02,20.02,24.80,8928.40,1789
+electro-ball,Electro Ball,electric,special,bounce,5,true,3,176208,176208,0,0,360.00,489.47,489.47,0,19.76,19.76,24.77,8916.62,1760
+signal-beam,Signal Beam,bug,special,bounce,5,true,3,176208,176208,0,0,360.00,489.47,489.47,0,19.76,19.76,24.77,8916.62,1760
+mirror-shot,Mirror Shot,steel,special,bounce,5,true,3,174236,174236,0,0,360.00,483.99,483.99,0,19.53,19.53,24.78,8921.12,1746
+shadow-ball,Shadow Ball,ghost,special,projectile,5,true,3,174000,174000,0,0,360.00,483.33,483.33,0,19.48,19.48,24.81,8930.32,1739
+seed-bomb,Seed Bomb,grass,physical,bounce,5,true,3,171178,171178,0,0,360.00,475.49,475.49,0,19.19,19.19,24.78,8919.63,1711
+shadow-sneak,Shadow Sneak,ghost,physical,homing,5,true,3,169651,169651,0,0,360.00,471.25,471.25,0,18.97,18.97,24.85,8944.37,1696
+power-gem,Power Gem,rock,special,bounce,5,true,3,167894,167894,0,0,360.00,466.37,466.37,0,18.82,18.82,24.78,8921.52,1683
+water-gun,Water Gun,water,special,projectile,5,true,3,164108,164108,0,0,360.00,455.86,455.86,0,18.37,18.37,24.82,8934.27,1647
+aura-sphere,Aura Sphere,fighting,special,projectile,5,true,3,161556,161556,0,0,360.00,448.77,448.77,0,18.06,18.06,24.84,8943.08,1616
+acid-spray,Acid Spray,poison,special,bounce,5,true,3,161554,161646,92,4,360.00,448.76,449.02,0.26,18.11,18.10,24.79,8926.05,1614
+thunder-shock,Thunder Shock,electric,special,projectile,5,true,3,160464,160464,0,0,360.00,445.73,445.73,0,17.94,17.94,24.84,8942.53,1606
+hail,Hail,ice,special,meteor,5,true,3,154708,155024,316,8,360.00,429.74,430.62,0.88,17.35,17.32,24.81,8933.03,1541
+ice-shard,Ice Shard,ice,physical,homing,5,true,3,152533,152533,0,0,360.00,423.70,423.70,0,17.04,17.04,24.87,8953.42,1525
+sludge,Sludge,poison,special,projectile,5,true,3,148513,148513,0,0,360.00,412.54,412.54,0,16.60,16.60,24.85,8947.67,1487
+energy-ball,Energy Ball,grass,special,homing,5,true,3,147262,147262,0,0,360.00,409.06,409.06,0,16.45,16.45,24.87,8952.37,1474
+confusion,Confusion,psychic,special,projectile,5,true,3,146802,146802,0,0,360.00,407.78,407.78,0,16.40,16.40,24.86,8949.67,1467
+rock-throw,Rock Throw,rock,physical,projectile,5,true,3,146578,146578,0,0,360.00,407.16,407.16,0,16.38,16.38,24.86,8948.62,1462
+sucker-punch,Sucker Punch,dark,physical,homing,5,true,3,138760,138760,0,0,360.00,385.44,385.44,0,15.49,15.49,24.88,8957.80,1386
+fairy-wind,Fairy Wind,fairy,special,nova,5,true,3,135900,135900,0,0,360.00,377.50,377.50,0,15.22,15.22,24.81,8930.45,1358
+poison-sting,Poison Sting,poison,physical,projectile,5,true,3,131244,131244,0,0,360.00,364.57,364.57,0,14.65,14.65,24.88,8956.57,1311
+heat-wave,Heat Wave,fire,special,nova,5,true,3,128929,128929,0,0,360.00,358.14,358.14,0,14.44,14.44,24.81,8930.73,1283
+dark-pulse,Dark Pulse,dark,special,nova,5,true,3,128345,128345,0,0,360.00,356.51,356.51,0,14.38,14.38,24.79,8922.98,1285
+psychic,Psychic,psychic,special,nova,5,true,3,126984,126984,0,0,360.00,352.73,352.73,0,14.19,14.19,24.86,8950.67,1276
+mist-ball,Mist Ball,psychic,special,homing,5,true,3,126544,126544,0,0,360.00,351.51,351.51,0,14.12,14.12,24.90,8963.32,1264
+giga-drain,Grass Knot,grass,special,aura,5,true,3,125865,125865,0,0,360.00,349.62,349.62,0,14.14,14.14,24.72,8900.90,1259
+draining-kiss,Draining Kiss,fairy,special,homing,5,true,3,125164,125164,0,0,360.00,347.68,347.68,0,13.96,13.96,24.90,8965.25,1255
+bonemerang,Bonemerang,ground,physical,boomerang,5,true,3,125152,128050,2898,40,360.00,347.64,355.69,8.05,14.31,13.99,24.86,8948.17,1266
+dazzling-gleam,Dazzling Gleam,fairy,special,aura,5,true,3,125030,125030,0,0,360.00,347.31,347.31,0,14.01,14.01,24.79,8923.75,1251
+night-shade,Night Shade,dark,special,aura,5,true,3,125030,125030,0,0,360.00,347.31,347.31,0,14.01,14.01,24.79,8923.75,1251
+bulldoze,Bulldoze,ground,physical,aura,5,true,3,123943,123943,0,0,360.00,344.29,344.29,0,13.91,13.91,24.75,8910.07,1239
+substitute,Substitute,normal,physical,turret,5,true,3,123547,123547,0,0,360.00,343.19,343.19,0,13.79,13.79,24.89,8961.97,1236
+discharge,Discharge,electric,special,aura,5,true,3,120504,120504,0,0,360.00,334.73,334.73,0,13.50,13.50,24.80,8927.22,1210
+hyper-voice,Hyper Voice,normal,special,nova,5,true,3,120249,120249,0,0,360.00,334.02,334.02,0,13.47,13.47,24.80,8927.70,1206
+vine-whip,Vine Whip,grass,physical,melee,5,true,3,120152,120152,0,0,360.00,333.76,333.76,0,13.50,13.50,24.73,8902.37,1200
+powder-snow,Powder Snow,ice,special,aura,5,true,3,119455,119455,0,0,360.00,331.82,331.82,0,13.41,13.41,24.74,8906.17,1193
+bubble,Bubble,water,special,nova,5,true,3,118080,118080,0,0,360.00,328.00,328.00,0,13.19,13.19,24.86,8950.48,1191
+bug-buzz,Bug Buzz,bug,special,aura,5,true,3,117855,117855,0,0,360.00,327.37,327.37,0,13.20,13.20,24.80,8928.38,1177
+play-rough,Play Rough,fairy,physical,melee,5,true,3,117200,117200,0,0,360.00,325.56,325.56,0,13.16,13.16,24.74,8906.65,1172
+will-o-wisp,Will-O-Wisp,fire,special,turret,5,true,3,116997,116997,0,0,360.00,324.99,324.99,0,13.04,13.04,24.91,8968.80,1172
+wing-attack,Wing Attack,flying,physical,melee,5,true,3,116492,116492,0,0,360.00,323.59,323.59,0,13.06,13.06,24.78,8922.07,1169
+leaf-storm,Petal Blizzard,grass,special,orbit,5,true,3,115557,115557,0,0,360.00,320.99,320.99,0,12.89,12.89,24.89,8961.62,1155
+gust,Gust,flying,special,orbit,5,true,3,114800,114800,0,0,360.00,318.89,318.89,0,12.81,12.81,24.89,8960.40,1148
+thunderbolt,Thunderbolt,electric,special,chain,5,true,3,114461,116485,2024,71,360.00,317.95,323.57,5.62,13.11,12.88,24.68,8886.55,1108
+outrage,Outrage,dragon,physical,spin,5,true,3,114300,114300,0,0,360.00,317.50,317.50,0,12.75,12.75,24.90,8963.90,1143
+ancient-power,Ancient Power,rock,special,orbit,5,true,3,114200,114200,0,0,360.00,317.22,317.22,0,12.74,12.74,24.90,8962.35,1142
+mud-shot,Mud Shot,ground,special,nova,5,true,3,114125,114125,0,0,360.00,317.01,317.01,0,12.77,12.77,24.82,8933.87,1142
+body-slam,Body Slam,normal,physical,melee,5,true,3,113100,113100,0,0,360.00,314.17,314.17,0,12.72,12.72,24.70,8891.60,1131
+rolling-kick,Rolling Kick,fighting,physical,spin,5,true,3,113008,113008,0,0,360.00,313.91,313.91,0,12.62,12.62,24.87,8954.83,1129
+gyro-ball,Gyro Ball,steel,physical,spin,5,true,3,113000,113000,0,0,360.00,313.89,313.89,0,12.64,12.64,24.83,8939.72,1130
+karate-chop,Karate Chop,fighting,physical,melee,5,true,3,112716,112716,0,0,360.00,313.10,313.10,0,12.62,12.62,24.80,8929.33,1121
+metal-claw,Metal Claw,steel,physical,melee,5,true,3,112604,112604,0,0,360.00,312.79,312.79,0,12.61,12.61,24.80,8929.33,1121
+night-slash,Night Slash,dark,physical,spin,5,true,3,112500,112500,0,0,360.00,312.50,312.50,0,12.56,12.56,24.87,8954.53,1125
+dragon-claw,Dragon Claw,dragon,physical,melee,5,true,3,112360,112360,0,0,360.00,312.11,312.11,0,12.60,12.60,24.78,8920.17,1119
+fire-spin,Fire Spin,fire,special,orbit,5,true,3,111900,111900,0,0,360.00,310.83,310.83,0,12.49,12.49,24.90,8962.73,1119
+lick,Lick,ghost,physical,melee,5,true,3,111532,111532,0,0,360.00,309.81,309.81,0,12.48,12.48,24.83,8940.25,1117
+bite,Bite,dark,physical,melee,5,true,3,110872,110872,0,0,360.00,307.98,307.98,0,12.41,12.41,24.81,8931.17,1106
+hex,Hex,ghost,special,chain,5,true,3,110664,113334,2670,96,360.00,307.40,314.82,7.42,12.73,12.43,24.72,8900.28,1064
+rapid-spin,Rapid Spin,normal,physical,spin,5,true,3,110648,110648,0,0,360.00,307.36,307.36,0,12.36,12.36,24.87,8954.12,1103
+tackle,Tackle,normal,physical,melee,5,true,3,110400,110400,0,0,360.00,306.67,306.67,0,12.36,12.36,24.80,8928.92,1104
+bug-bite,Bug Bite,bug,physical,melee,5,true,3,110252,110252,0,0,360.00,306.26,306.26,0,12.33,12.33,24.83,8939.32,1102
+spikes,Spikes,ground,physical,mine,5,true,3,106172,106239,67,9,360.00,294.92,295.11,0.19,11.93,11.92,24.73,8903.92,1057
+toxic-spikes,Toxic Spikes,poison,physical,mine,5,true,3,105625,105903,278,20,360.00,293.40,294.17,0.77,11.87,11.84,24.78,8919.65,1044
+flame-wheel,Flame Wheel,fire,physical,trail,5,true,3,105200,105200,0,0,360.00,292.22,292.22,0,11.75,11.75,24.87,8954.30,1052
+magnitude,Magnitude,ground,physical,quake,5,true,3,105182,115794,10612,202,360.00,292.17,321.65,29.48,12.93,11.74,24.88,8956.95,1063
+air-slash,Air Slash,flying,special,homing,5,true,3,105139,107001,1862,80,360.00,292.05,297.22,5.17,11.93,11.73,24.91,8966.30,1005
+disarming-voice,Disarming Voice,fairy,special,shove,5,true,3,103930,103930,0,0,360.00,288.69,288.69,0,11.70,11.70,24.68,8883.87,1034
+extrasensory,Extrasensory,psychic,special,shove,5,true,3,101160,101160,0,0,360.00,281.00,281.00,0,11.37,11.37,24.72,8897.90,1006
+string-shot,String Shot,bug,physical,mine,5,true,3,99952,100062,110,3,360.00,277.64,277.95,0.31,11.23,11.22,24.76,8911.85,1001
+vacuum-wave,Vacuum Wave,fighting,special,shove,5,true,3,99720,99720,0,0,360.00,277.00,277.00,0,11.20,11.20,24.74,8907.27,990
+toxic,Toxic,poison,special,trail,5,true,3,99575,100103,528,88,360.00,276.60,278.06,1.47,11.17,11.11,24.89,8959.17,919
+flamethrower,Flamethrower,fire,special,cone,5,true,3,99351,105729,6378,98,360.00,275.97,293.69,17.72,11.80,11.09,24.89,8961.63,1023
+dragon-breath,Dragon Breath,dragon,special,cone,5,true,3,98207,103645,5438,86,360.00,272.80,287.90,15.11,11.56,10.96,24.90,8963.92,1005
+razor-leaf,Razor Leaf,grass,physical,boomerang,5,true,3,96158,105153,8995,188,360.00,267.11,292.09,24.99,11.74,10.74,24.88,8957.38,952
+psycho-cut,Psycho Cut,psychic,physical,boomerang,5,true,3,95637,102687,7050,252,360.00,265.66,285.24,19.58,11.46,10.67,24.89,8960.03,849
+bubble-beam,Bubble Beam,water,special,cone,5,true,3,87134,94882,7748,136,360.00,242.04,263.56,21.52,10.58,9.72,24.91,8966.48,891
+whirlwind,Whirlwind,flying,special,shove,5,true,3,84961,84961,0,0,360.00,236.00,236.00,0,9.52,9.52,24.80,8928.13,855
+dragon-rage,Dragon Rage,dragon,special,beam,5,true,3,77808,92322,14514,492,360.00,216.13,256.45,40.32,10.32,8.70,24.84,8941.80,582
+hydro-pump,Hydro Pump,water,special,beam,5,true,3,70800,95800,25000,250,360.00,196.67,266.11,69.44,10.76,7.95,24.72,8900.65,958
+rock-tomb,Rock Tomb,rock,physical,stun,5,true,3,66100,87800,21700,217,360.00,183.61,243.89,60.28,9.88,7.44,24.68,8884.97,878
+freeze-dry,Freeze-Dry,ice,special,stun,5,true,3,62406,77224,14818,194,360.00,173.35,214.51,41.16,8.67,7.01,24.73,8903.97,728
+flash-cannon,Flash Cannon,steel,special,beam,5,true,3,60720,82770,22050,558,360.00,168.67,229.92,61.25,9.25,6.78,24.87,8952.10,483
+dynamic-punch,Dynamic Punch,fighting,physical,stun,5,true,3,60300,84300,24000,240,360.00,167.50,234.17,66.67,9.48,6.78,24.69,8888.02,843
+thunder-wave,Thunder Wave,electric,special,stun,5,true,3,57928,74704,16776,198,360.00,160.91,207.51,46.60,8.39,6.51,24.73,8903.85,724
+sand-tomb,Sand Tomb,ground,physical,vortex,5,true,3,51020,88080,37060,489,360.00,141.72,244.67,102.94,9.88,5.72,24.77,8918.95,764
+ice-beam,Ice Beam,ice,special,beam,5,true,3,50448,75114,24666,405,360.00,140.13,208.65,68.52,8.40,5.64,24.83,8938.92,585
+ominous-wind,Ominous Wind,ghost,special,vortex,5,true,3,49336,89092,39756,539,360.00,137.04,247.48,110.43,9.99,5.53,24.78,8919.27,753
+psybeam,Psybeam,psychic,special,beam,5,true,3,48203,76735,28532,556,360.00,133.90,213.15,79.26,8.58,5.39,24.85,8944.78,496
+whirlpool,Whirlpool,water,special,vortex,5,true,3,29240,78752,49512,627,360.00,81.22,218.76,137.53,8.82,3.28,24.80,8927.90,659
+hyper-beam,Hyper Beam,normal,special,charge,5,true,3,15100,63900,48800,488,360.00,41.94,177.50,135.56,7.17,1.69,24.76,8913.17,639
+solar-beam,Solar Beam,grass,special,charge,5,true,3,13000,62400,49400,494,360.00,36.11,173.33,137.22,7.01,1.46,24.74,8905.50,624
+aerial-ace,Aerial Ace,flying,physical,dash,5,true,3,-22039,37792,59831,673,360.00,-61.22,104.98,166.20,4.22,-2.46,24.89,8960.10,304
+flame-charge,Flame Charge,fire,physical,dash,5,true,3,-54866,22417,77283,997,360.00,-152.41,62.27,214.67,2.50,-6.12,24.91,8966.88,0
+quick-attack,Quick Attack,normal,physical,dash,5,true,3,-55085,21365,76450,790,360.00,-153.01,59.35,212.36,2.38,-6.14,24.91,8967.50,189
+u-turn,U-turn,bug,physical,dash,5,true,3,-63964,17568,81532,991,360.00,-177.68,48.80,226.48,1.96,-7.13,24.91,8968.53,0
+aqua-ring,Aqua Ring,water,status,buff,5,false,3,-98500,0,98500,985,360.00,-273.61,0,273.61,0,-10.98,24.91,8968.60,0
+dragon-dance,Dragon Dance,dragon,status,buff,5,false,3,-98800,0,98800,988,360.00,-274.44,0,274.44,0,-11.02,24.91,8967.72,0
+agility,Agility,normal,status,buff,5,false,3,-99200,0,99200,992,360.00,-275.56,0,275.56,0,-11.06,24.91,8967.52,0
+harden,Harden,normal,status,buff,5,false,3,-99200,0,99200,992,360.00,-275.56,0,275.56,0,-11.06,24.91,8967.52,0
+nasty-plot,Nasty Plot,normal,status,buff,5,false,3,-99200,0,99200,992,360.00,-275.56,0,275.56,0,-11.06,24.91,8967.52,0
+swords-dance,Swords Dance,normal,status,buff,5,false,3,-99200,0,99200,992,360.00,-275.56,0,275.56,0,-11.06,24.91,8967.52,0

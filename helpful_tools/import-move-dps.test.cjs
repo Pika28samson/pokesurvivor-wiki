@@ -1,0 +1,5 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),os=require('node:os'),vm=require('node:vm'),crypto=require('node:crypto');
+const {parseCsv,build}=require('./import-move-dps.cjs');
+test('CSV parser preserves quoted commas and escaped quotes',()=>{assert.deepEqual(parseCsv('move_id,move_name,damage_score\r\nx,"A, ""B""",12.34\r\n'),[{move_id:'x',move_name:'A, "B"',damage_score:'12.34'}]);assert.throws(()=>parseCsv('a\n"broken'));});
+test('generated browser benchmark is reproducible and contains all CSV values',()=>{const file=path.join(os.tmpdir(),'pokesurvivor-move-dps-'+crypto.randomUUID()+'.js');try{const data=build(undefined,file),c={G:{}};vm.runInNewContext(fs.readFileSync(path.join(__dirname,'move-dps-data.js'),'utf8'),c);assert.deepEqual(data,JSON.parse(JSON.stringify(c.G.MoveDps)));assert.equal(Object.keys(data.rows).length,103);for(const row of Object.values(data.rows)){assert.ok(Number.isFinite(row.damage_score));assert.ok(row.benchmark_factor>0);}}finally{if(fs.existsSync(file))fs.unlinkSync(file);}});
