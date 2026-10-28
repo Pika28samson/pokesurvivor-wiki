@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='pokesurvivor-wiki-v4';
+const CACHE='pokesurvivor-wiki-v5';
 const SHELL=['./index.html','./wiki.css','./site.css','./mobile.css','./mobile-ui.js','./site-nav.js','./site-search.js','./search-index.js','./install.js','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./offline.html'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pokesurvivor-wiki-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
