@@ -17,3 +17,6 @@ main{padding-top:36px;padding-bottom:48px}h1{margin:0 0 12px}h2{margin-top:28px}
 .ranking-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.ranking-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted)}.pokemon-card .ranking-chip .tier-badge{float:none;height:22px;min-width:22px;font-size:12px;padding:2px 5px}.ranking-chip small{font-size:10px}.pokemon-ranking table{margin-top:12px}
 
 .best-build-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,480px);gap:24px;align-items:start;margin-top:18px}.best-build-copy{min-width:0}.best-build-copy h3{margin-top:0}.best-build-simulation{min-width:0}.best-build-simulation .combo-preview{display:block;max-width:480px}@media(max-width:850px){.best-build-layout{grid-template-columns:1fr}}
+
+.wiki-logo{vertical-align:middle;margin-right:8px;border-radius:6px}.ability-entry{margin:12px 0}.ability-entry>summary{cursor:pointer;font-size:17px}.ability-entry h3{font-size:15px}.ability-entry .move-links{margin-bottom:16px}#ability-search{display:block;max-width:540px;width:100%;margin-top:8px}[hidden]{display:none!important}
+

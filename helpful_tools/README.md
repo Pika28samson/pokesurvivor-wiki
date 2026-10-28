@@ -1,4 +1,6 @@
-# PokéSurvivors Wiki
+# PokéSurvivor Wiki
+
+Website: https://pika28samson.github.io/pokesurvivor-wiki/
 
 ## Web interface
 
@@ -9,7 +11,7 @@ CSV scores aggregate damage and penalties over 360 measured seconds per move
 `node helpful_tools/swarm_simulator/run.cjs --neutral --trials 3 --duration 120 --warmup 30 --enemy-hp 100 --spawn-rate 15 --max-enemies 25`.
 
 Damage calculation policy: Analytic, Serene Grace, Sheer Force, Poison Touch,
-Rough Skin, Iron Barbs, Synchronize and Infiltrator receive no bonus in PokéSurvivors Wiki rankings, recommendations or previews. This includes any generic +8% type
+Rough Skin, Iron Barbs, Synchronize and Infiltrator receive no bonus in PokéSurvivor Wiki rankings, recommendations or previews. This includes any generic +8% type
 passive attached to these abilities. Their status changes, retaliation and shield
 effects are disabled in previews. Technician and other confirmed bonuses remain
 enabled. The upstream game's ability definitions are unchanged.
@@ -78,7 +80,7 @@ explains the assumptions and lists all 18 coefficients and weighted type shares.
 After updating the game's input data, regenerate the population snapshot with
 `node helpful_tools/build-typing-model.cjs`. Tests verify input source hashes and
 deterministic reproduction. The population snapshot and calculators are confined
-to PokéSurvivors Wiki; no game source files are changed.
+to PokéSurvivor Wiki; no game source files are changed.
 
 Combination settings default to including compatible TMs and requiring Harden.
 All moves are level 5 and evolved if possible. Rankings default to CSV-based swarm DPS estimates, with an alternative ideal aggregate DPS ranking. They account
@@ -177,7 +179,7 @@ Canvas Settings on Pokémon recommendations and the Simulation page include Rese
 
 Pokémon S–F ranking: `node helpful_tools/build-pokemon-rankings.cjs` generates pokemon-rankings.js using each Pokémon’s best estimated four-move damage score across all natural/compatible-TM moves and real regular/hidden abilities, with at most two status moves. Both attack categories and all families are eligible; The public Damage ranking requires Harden as one of the four moves for every Pokemon. Overall ranking independently compares Harden and no-Harden builds. Conditions are fixed to Hardy nature, full HP, no items/run upgrades, elapsed ability time 1,200 seconds, 1,000 kills, and ability-summoned weather. Tiers use competition-rank percentiles: S top 5%, A next 15%, B/C/D next 20% each, E next 15%, F bottom 5%. Equal scores share rank/tier. Pokémon cards show the grade and best score, catalogue filters/sorting support tiers/rank, and detail pages show the winning ability and combination. Grades reflect an additive offence estimate, not survival or measured merged-build output. Regenerate rankings after importing a new damage-score CSV or changing game/model data; source-hash tests detect stale snapshots.
 
-English text coverage: english-text.js supplements the game’s English dictionary for all type-specific ability descriptions and generic secondary bonuses. PokéSurvivors Wiki pages load it after lang-en.js. Tests enumerate every Pokémon’s available ability effects, requiring English primary/secondary descriptions. Upstream game data and mechanics are unchanged.
+English text coverage: english-text.js supplements the game’s English dictionary for all type-specific ability descriptions and generic secondary bonuses. PokéSurvivor Wiki pages load it after lang-en.js. Tests enumerate every Pokémon’s available ability effects, requiring English primary/secondary descriptions. Upstream game data and mechanics are unchanged.
 
 Current simulation environments: the CSV benchmark and move-detail previews use 100 HP, 15 spawns/second and 25 maximum enemies, retaining the remaining-HP contact penalty. Recommendation/build previews default to 800 HP, 20 spawns/second and 30 maximum enemies. Reset buttons restore those values; untouched older build defaults migrate without changing saved builds or custom settings.
 
@@ -196,3 +198,13 @@ Attack style filters treat both melee-family and spin-family moves as Melee in t
 Best move combinations remembers disabled move families in browser localStorage across Pokemon pages and reloads. Unseen families retain their saved choice; new families are enabled by default. Canvas Reset does not clear these preferences. Blocked or malformed storage falls back safely to all families enabled.
 
 Melee attack style now includes melee, aura, dash, orbit, shove, spin, mine and trail families. All other damaging families are ranged; buffs remain status moves.
+
+## Phone installation and ability reference
+
+The wiki is a standalone PWA under `helpful_tools/`; its manifest and service worker use relative URLs for GitHub Pages project hosting. Open the published HTTPS site, then install using the Android browser menu or Safari’s Share → Add to Home Screen. The homepage also offers an install button when the browser supports it. Installation requires deployment; these local changes do not publish anything.
+
+The service worker uses network-first caching for visited resources, with a clear offline fallback for pages not yet visited. It does not pre-download all game assets. Bump its cache version when changing the shell. The wiki worker only controls the wiki directory.
+
+`abilities.html` lists the complete ability catalogue and its current Pokémon holders. Descriptions and move matches follow this game’s `ability-fx.js`, not main-series mechanics. Named move lists span all move stages and do not imply holder learnability. Technician uses original base hit damage <=12; Skill Link uses current stage count/bounce. Custom effects and the additional primary-type passive are listed separately.
+
+Check the feature with `node --test helpful_tools/abilities.test.cjs`. Build to a fresh optional output directory with `node helpful_tools/build-site.cjs . <output-directory>`.
