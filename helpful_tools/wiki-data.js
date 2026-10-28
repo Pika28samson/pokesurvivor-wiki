@@ -112,9 +112,10 @@ window.Wiki = (() => {
     const area=document.createElement('div');area.className='sprite-area';
     const meta=G.SPRITE_META[mon.dex],shiny=!!options.shiny,a=meta?.a,available=name=>a?.[name]&&!(shiny&&meta.sm?.includes(name)),anim=available('Idle')?'Idle':available('Walk')?'Walk':null;
     if(!anim||(shiny&&!meta.sh)){area.textContent=shiny?'Shiny unavailable':'Sprite unavailable';return area;}
-    const m=(shiny&&meta.sa?.[anim])||a[anim],s=Math.min(2,(options.height||100)/m.h,(options.width||170)/m.w),frame=document.createElement('span'),img=document.createElement('img');
+    const m=(shiny&&meta.sa?.[anim])||a[anim],s=Math.min(options.maxScale||2,(options.height||100)/m.h,(options.width||170)/m.w),frame=document.createElement('span'),img=document.createElement('img');
     frame.className='sprite-frame';frame.style.width=`${m.w*s}px`;frame.style.height=`${m.h*s}px`;
     img.src=`../assets/pokemon/${mon.dex}/${shiny?'s/':''}${anim}.png`;img.alt=`${mon.name}${shiny?' shiny':''} sprite`;img.loading='lazy';img.style.width=`${m.w*m.n*s}px`;img.style.height=`${m.h*m.r*s}px`;
+    if(options.bounds){const [x,y,w,h]=options.bounds,scale=Math.min((options.width||52)/w,(options.height||52)/h);frame.style.width=w*scale+'px';frame.style.height=h*scale+'px';img.style.width=m.w*m.n*scale+'px';img.style.height=m.h*m.r*scale+'px';img.style.position='relative';img.style.left=-x*scale+'px';img.style.top=-y*scale+'px';}
     img.onerror=()=>{area.textContent='Sprite unavailable';};frame.append(img);area.append(frame);return area;
   }
   let bestMoveUsers;

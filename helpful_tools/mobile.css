@@ -33,3 +33,7 @@
 .hero:has(.pokemon-portraits)>div:last-child{flex-basis:140px}
 .ability-entry>summary>.sprite-area{margin-right:0}
 }
+
+@media(max-width:650px){.ability-entry>summary{column-gap:3px}.ability-entry>summary>.sprite-area{flex:none}}
+@media(max-width:650px){.ability-entry>summary{flex-wrap:nowrap}.ability-entry>summary>.sprite-area{flex:0 0 56px}.ability-entry>summary>.source{margin-left:3px}}
+@media(max-width:650px){.ability-entry>summary::before{content:"";font-size:0;line-height:0;flex:0 0 0;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--mint);margin-right:5px;transform-origin:3px 5px}.ability-entry[open]>summary::before{transform:rotate(90deg)}}

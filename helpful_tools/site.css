@@ -4,8 +4,12 @@
 .nav .nav-menu a{font-weight:400;margin-right:0}
 
 
-.ability-entry>summary>.sprite-area{display:inline-flex;vertical-align:middle;width:40px;min-width:40px;height:40px;margin-right:8px}
+.ability-entry>summary>.sprite-area{display:inline-flex;vertical-align:middle;width:56px;min-width:56px;height:56px;margin-right:3px}
 .pokemon-portraits{display:flex;gap:12px;align-items:center}
 .pokemon-portraits figure{margin:0;text-align:center;min-width:0}
 .pokemon-portraits figcaption{font-size:11px;color:var(--muted);line-height:1.4}
 .pokemon-portraits .sprite-area{min-width:100px;width:100px}
+
+.ability-entry>summary{display:flex;align-items:center;gap:3px;list-style:none}.ability-entry>summary::-webkit-details-marker{display:none}.ability-entry>summary>.sprite-area{flex:0 0 56px}
+.ability-summary-copy{flex:1;min-width:0;overflow-wrap:anywhere}.ability-summary-copy>.source{margin-left:3px}
+.ability-entry>summary::before{content:"";display:block;flex:0 0 0;width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:7px solid var(--mint);margin-right:5px;transform-origin:3px 5px}.ability-entry[open]>summary::before{transform:rotate(90deg)}
