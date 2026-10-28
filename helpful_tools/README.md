@@ -238,3 +238,13 @@ The requested introductory and repeated explanatory paragraphs have been removed
 Live Pokémon and saved-build previews now opt into full game ability profiles, including hit/status flags, contact reactions, kill hooks and timed hooks. They use a finite, isolated ability-condition state while the training actor remains invulnerable and stationary. Contact effects use the game's per-enemy contact cooldown; ability damage uses a baseline player level of 1. Loot hooks are harmless no-ops in training. None excludes all ability effects.
 
 Automatic weather summoning is suppressed in live previews, including Drought, Drizzle, Sand Stream, Snow Warning and Orichalcum Pulse. Manually selected weather still applies. Single-move previews force ability and weather to none, so move pages remain ability-free. Ranking and combination-estimate policies are unchanged; their excluded effects should not be confused with the live preview's runtime effects.
+
+## Phone layout
+
+Screens up to 650px wide use `mobile.css` and the reversible `mobile-ui.js` presentation layer. At 651px and above the original desktop DOM and styles remain in use. Desktop screenshot baselines and layout measurements were checked on all 13 pages; resizing back from phone width also restores the original order and controls.
+
+The phone header is 56px tall with expandable navigation/search. Pokémon pages use Overview / Builds / Moves / Abilities tabs, key stat cards, a recommended-build summary and ranking cards. Move tables become searchable cards; reference tables use labelled rows. Secondary filters and detailed mechanics collapse into disclosures. Item and ability references retain their original interactive filters and sprites. Native validation opens any collapsed options containing an invalid field.
+
+Training iframes receive `data-mobile-src` on phones and do not load until Play simulation is expanded. Closing a preview stops it. Desktop preview loading remains unchanged. Deep links reveal the relevant tab/disclosure, and the presentation layer observes generated results so filtering and saved-build updates keep working. No game mechanics or ranking calculations are changed by the mobile layer.
+
+Run `node --test helpful_tools/mobile-layout.test.cjs` with Playwright and Chrome available; `WIKI_BROWSER_CHANNEL` can select another Playwright browser channel. The tests cover desktop restoration, the breakpoint, tabs, deferred previews, search, filtering, gacha and deep links. The service-worker shell includes the new mobile assets in cache v4.
