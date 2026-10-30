@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
 const readline = require('node:readline/promises');
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, 'game-reference');
 
 function madridToday() {
   const parts = {};

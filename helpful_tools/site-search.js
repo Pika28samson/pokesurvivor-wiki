@@ -13,7 +13,7 @@ if(typeof document!=='undefined')(()=>{
   pending=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('search-index.js',base).href;script.onload=()=>{script.remove();const rows=window.WIKI_SEARCH_INDEX?.entries;if(Array.isArray(rows))resolve(rows);else reject(Error('Invalid search index'));};script.onerror=()=>{script.remove();reject(Error('Search index could not load'));};document.head.append(script);}).catch(error=>{pending=null;throw error;});
   return pending;
  };
- const label={pokemon:'Pokémon',move:'Move',ability:'Ability',mechanic:'Mechanic',item:'Item',tool:'Tool'};
+ const label={pokemon:'Pokémon',move:'Move',ability:'Ability',mechanic:'Mechanic',item:'Item',tool:'Tool',event:'Event',costume:'Costume'};
  const card=row=>{const a=document.createElement('a');a.href=row.url;a.className='search-result';const title=document.createElement('strong');title.textContent=row.title;const small=document.createElement('small');small.textContent=label[row.kind]||row.kind;a.append(title,small);return a;};
  async function quick(){const version=++serial,box=$('global-results'),q=field.value.trim();box.replaceChildren();box.hidden=!q;if(!q)return;try{const rows=WikiSearch.find(await load(),q,'',8);if(version!==serial)return;box.replaceChildren(...rows.map(card));const all=document.createElement('a');all.href='search.html?q='+encodeURIComponent(q);all.textContent=rows.length?'See all results →':'No matches. Open search';box.append(all);}catch(e){if(version===serial)box.textContent='Search could not load. Connect and try again.';}}
  field.addEventListener('input',quick);field.addEventListener('focus',()=>{load().catch(()=>{});if(field.value)quick();});

@@ -9563,6 +9563,41 @@
       "keywords": ""
     },
     {
+      "kind": "event",
+      "title": "Halloween: Spectral Night",
+      "url": "halloween.html",
+      "text": "Collect candy, unlock permanent witch costumes, explore three spooky biomes and face the great Gengar.",
+      "keywords": "Halloween candy costumes Gengar dates shop gacha odds"
+    },
+    {
+      "kind": "costume",
+      "title": "Witch Pikachu",
+      "url": "pokemon-detail.html?dex=25#costumes",
+      "text": "300 Halloween Candy in Kecleon shop; permanent costume.",
+      "keywords": "Halloween witch skin 25"
+    },
+    {
+      "kind": "costume",
+      "title": "Witch Gengar",
+      "url": "pokemon-detail.html?dex=94#costumes",
+      "text": "300 Halloween Candy in Kecleon shop; permanent costume.",
+      "keywords": "Halloween witch skin 94"
+    },
+    {
+      "kind": "costume",
+      "title": "Witch Umbreon",
+      "url": "pokemon-detail.html?dex=197#costumes",
+      "text": "300 Halloween Candy in Kecleon shop; permanent costume.",
+      "keywords": "Halloween witch skin 197"
+    },
+    {
+      "kind": "costume",
+      "title": "Witch Kecleon",
+      "url": "pokemon-detail.html?dex=352#costumes",
+      "text": "Halloween NPC shopkeeper appearance; not obtainable.",
+      "keywords": "Halloween witch skin 352"
+    },
+    {
       "kind": "tool",
       "title": "Gacha probability calculator",
       "url": "gacha.html",

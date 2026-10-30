@@ -7,7 +7,7 @@
   const link=id=>`<a style="--type-color:${W.colours[G.Moves.BY_ID[id].type]}" href="move.html?id=${encodeURIComponent(id)}">${esc(W.moveName(id))}</a>`;
   const tags=types=>types.map(t=>`<span class="badge" style="--type-color:${W.colours[t]}">${t}</span>`).join('');
   const moveLinks=ids=>`<div class="move-links">${ids.map(link).join('') || '<p>None.</p>'}</div>`;
-  const sources=files=>`<p class="source">Source: ${files.map(f=>`<a href="../js/${f}">${f}</a>`).join(' · ')}</p>`;
+  const sources=files=>`<p class="source">Source: ${files.map(f=>`<a href="game-reference/js/${f}">${f}</a>`).join(' · ')}</p>`;
   const abilityName=id=>G.ABIL[id]?.[1] || W.title(id);
   const abilityIds=mon=>[...new Set((G.DEX_ABIL[mon.dex]||[]).filter(Boolean))];
   const fixed2=n=>n==null?'—':n.toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2});

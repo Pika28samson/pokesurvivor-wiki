@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "12977c611201ed43ee46d892145e8d1450fa9173",
+  "sourceModules": [
+    "Tiles",
+    "World"
+  ],
+  "method": "Scenes captured from the upstream game map renderer; no generated artwork. Idle Witch Pikachu frame overlaid as the player marker.",
+  "seed": 20261030,
+  "viewport": {
+    "width": 768,
+    "height": 480,
+    "left": 640,
+    "top": 416
+  },
+  "biomes": [
+    {
+      "index": 22,
+      "name": "Pumpkin Patch",
+      "image": "halloween-0.png"
+    },
+    {
+      "index": 23,
+      "name": "Haunted Cemetery",
+      "image": "halloween-1.png"
+    },
+    {
+      "index": 24,
+      "name": "Dark Forest",
+      "image": "halloween-2.png"
+    }
+  ]
+}

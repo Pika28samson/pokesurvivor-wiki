@@ -1,5 +1,5 @@
 {
-  "description": "Game sources used to verify gacha, ability slot probabilities and item/orb references. Deployment uses the upstream commit pinned in hosting/pages.yml.",
+  "description": "Game sources used to verify gacha, ability slot probabilities and item/orb references. Reference scripts are preserved in game-reference; event data records its separate upstream source.",
   "sources": {
     "js/core/util.js": "cbe280d866fcbbe7a603d5c60c708eecd556f17b7ec0f1dd58c1d4548ab9ccc4",
     "js/data/pokedex.js": "43ec37ef3ac48452f9a72c51851a188e2375ec93cde9394b335612ad1e107369",

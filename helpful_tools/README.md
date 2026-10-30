@@ -248,3 +248,11 @@ The phone header is 56px tall with expandable navigation/search. Pokémon pages 
 Training iframes receive `data-mobile-src` on phones and do not load until Play simulation is expanded. Closing a preview stops it. Desktop preview loading remains unchanged. Deep links reveal the relevant tab/disclosure, and the presentation layer observes generated results so filtering and saved-build updates keep working. No game mechanics or ranking calculations are changed by the mobile layer.
 
 Run `node --test helpful_tools/mobile-layout.test.cjs` with Playwright and Chrome available; `WIKI_BROWSER_CHANNEL` can select another Playwright browser channel. The tests cover desktop restoration, the breakpoint, tabs, deferred previews, search, filtering, gacha and deep links. The service-worker shell includes the new mobile assets in cache v4.
+
+## Limited-time events
+
+`events.html` lists the event catalogue; `halloween.html` contains the verified 2026 Halloween rules and reward planner. `events-data.js` records the source commit, bundle SHA-256 and costume frame metadata. Real normal/shiny costume sheets are stored in `costume-sprites/` so the existing pinned wiki deployment includes them without changing its base reference data.
+
+After a game update, review Halloween, Skins, Shop, Gacha, Tiles, Enemies, Spawner, Judgment and Game before changing event facts. Run `node --test helpful_tools/events.test.cjs` against the verified game checkout to check calendar boundaries, candy gating, prices, bonus and costume sheet dimensions. The test intentionally flags a changed bundle for review.
+
+The wiki now keeps its last working game reference scripts in `game-reference/js/`. Browser pages use these scripts directly, so updating the base game no longer removes wiki data. These retain the existing reference/ranking baseline (d567c6d); Halloween facts and costumes use the newer snapshot recorded in `events-data.js`.
